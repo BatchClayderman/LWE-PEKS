@@ -1,5 +1,5 @@
-function y = search(c, w, sk, q)
-	st = tokgen(sk, w);
+function y = search(c, w, sk, q, k)
+	st = tokgen(sk, w, k);
 	t = dot(st, c);
 	if t < q / 4
 		y = 1;
@@ -8,23 +8,25 @@ function y = search(c, w, sk, q)
 	end
 end
  
-function st = tokgen(sk, w)
+function st = tokgen(sk, w, k)
 	[n, m] = size(sk);
-	T = load(matrix_T.txt);
-	M = load(matrix_M.txt);
+	T = rand(n, m); % load(matrix_T.txt);
+	M = rand(n, m); % load(matrix_M.txt);
+	tau = rand(k);
 	for j = 1:k
-		T{j} = T(:, 2 * j - 1:2 * j);
-		T1 = tau(j) * T{j} + T1;
+		T(:, 2 * j - 1:2 * j) = T(:, 2 * j - 1:2 * j);
+		T1 = tau(j) * T(:, j) + rand();
 	end
 	for j = 1:k
-		M{j} = M(:, 2 * j * (m + 2) - (m + 2) + 1:2 * j * (m + 2));
-		M1 = w(j) * M{j} + M1;
+		M(:, 2 * j - 1:2 * j) = M(:, 2 * j - 1:2 * j);
+		M1 = w(j) * M(:, j) + rand();
 	end
 	
-	A_tau = [A, mod(T1, q)];
-	e2 = SampleZ(c, s, m / 2);
-	e1 = SamplePre(A_tau, sk, y);
-	st = [e1; e2];
+	% A_tau = [A, mod(T1, q)];
+	% e2 = SampleZ(c, s, m / 2);
+	% e1 = SamplePre(A_tau, sk, y);
+	% st = [e1; e2];
+	st = [T; M];
 end
 
 function x = SamplePre(A_tau, sk, y)

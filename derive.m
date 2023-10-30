@@ -1,9 +1,8 @@
-function [sk, h] = derive(n, m, l, q)
+function [sk, h] = derive(n, m, l, q, pk, sk)
 	tau = seq(l);
-	[pk, sk] = setup(n, m, q);
 	T1 = zeros(n, m);
 	% A = round(-q + (2 * q) * rand(n, m));
-	tic;
+    
 	for j = 1:l
 		T{j} = round(-q + (2 * q) * rand(n, m));
 		T1 = tau(j) * T{j} + T1;
@@ -12,13 +11,10 @@ function [sk, h] = derive(n, m, l, q)
 	A_tau = mod(T1, q);
 	ID = [pk, A_tau];
 	
-	W = inv(sk) * A_tau;
+	W = A_tau' / sk;
 	W = sk * A_tau;
-	T = [sk, W; zeros(n), eye(n)];
+	T = [sk, W(1:n, 1:n); zeros(n), eye(n)];
 	sk = T;
-	
-	toc;
-	h = toc;
 end
 
 function y = seq(num)
