@@ -18,7 +18,7 @@ cnt = 1;
 for i = 1:loopTime
 	tic;
 	encrypt(n, m, floor(k / 100) * i, floor(l / 100) * i, q, alpha);
-	elapsedTime(cnt) = toc + 46 * i;
+	elapsedTime(cnt) = toc;
 	waitbar(cnt / loopTime, h, sprintf("Group 1: %d / %d = %0.2f%%", cnt, loopTime, cnt * 100 / loopTime));
 	cnt = cnt + 1;
 end
@@ -44,7 +44,7 @@ cnt = 1;
 for i = 1:loopTime
 	tic;
 	encrypt(n, m, floor(k / 100) * i, floor(l / 100) * i, q, alpha);
-	elapsedTime(cnt) = toc + 74 * i;
+	elapsedTime(cnt) = toc;
 	waitbar(cnt / loopTime, h, sprintf("Group 2: %d / %d = %0.2f%%", cnt, loopTime, cnt * 100 / loopTime));
 	cnt = cnt + 1;
 end

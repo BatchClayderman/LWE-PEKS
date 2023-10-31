@@ -19,7 +19,7 @@ cnt = 1;
 for i = 1:loopTime
 	tic;
 	search(c, w, sk, q, floor(k / 100) * i);
-	elapsedTime(cnt) = toc + 1.35 * i;
+	elapsedTime(cnt) = toc;
 	waitbar(cnt / loopTime, h, sprintf("Group 1: %d / %d = %0.2f%%", cnt, loopTime, cnt * 100 / loopTime));
 	cnt = cnt + 1;
 end
@@ -46,7 +46,7 @@ cnt = 1;
 for i = 1:loopTime
 	tic;
 	search(c, w, sk, q, floor(k / 100) * i);
-	elapsedTime(cnt) = toc + 1.6 * i;
+	elapsedTime(cnt) = toc;
 	waitbar(cnt / loopTime, h, sprintf("Group 1: %d / %d = %0.2f%%", cnt, loopTime, cnt * 100 / loopTime));
 	cnt = cnt + 1;
 end

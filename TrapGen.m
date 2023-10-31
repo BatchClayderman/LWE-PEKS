@@ -36,11 +36,7 @@ function E = constructE(D, q, h, id)
 	waitbar(0, h, sprintf("Group %d: 0 / %d = 0.00%%", id, m));
 	r = floor(2560 / n);
 	for i = 1:m
-		if i <= r
-			E(i, 1:n) = SF(D, q)';
-		else
-			E(i, :) = E(mod(i - 1, r) + 1, :);
-		end
+		E(i, 1:n) = SF(D, q)';
 		waitbar(i / m, h, sprintf("Group %d: %d / %d = %.2f%%", id, i, m, i * 100 / m));
 	end
 end
